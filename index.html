@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real Time Weather Hub</title>
+
+    <!-- ✅ ONLY THIS LINE CHANGED -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+        <h1>🌦 Real Time Weather Hub</h1>
+        <p>Check live weather updates of any city</p>
+
+        <!-- ✅ FORM ADDED -->
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- ✅ ERROR MESSAGE ADDED HERE -->
+        <p style="color:red;">
+            {{ error if error else "" }}
+        </p>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+        <div class="weather-card">
+
+            <!-- MINI ANIMATED GRAPHICS -->
+            <div class="weather-animations">
+                <span class="cloud">☁️</span>
+                <span class="sun">🌞</span>
+                <span class="rain">🌧️</span>
+            </div>
+
+            <!-- ✅ DYNAMIC CITY -->
+            <h2>{{ weather.city if weather else "City Name" }}</h2>
+
+            <div class="divider"></div>
+
+            <!-- ✅ DYNAMIC WEATHER -->
+            <p class="temp">🌡 <span>Temperature:</span> {{ weather.temp if weather else "--" }} °C</p>
+            <p class="humidity">💧 <span>Humidity:</span> {{ weather.humidity if weather else "--" }} %</p>
+            <p class="wind">🌬 <span>Wind Speed:</span> {{ weather.wind if weather else "--" }} km/h</p>
+            <p class="condition">☁ <span>Condition:</span> {{ weather.condition if weather else "--" }}</p>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
